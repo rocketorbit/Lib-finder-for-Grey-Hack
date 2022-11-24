@@ -41,7 +41,7 @@ timeToDoMagic = function //lets do this.
         if not magic then continue
         pureHeart = checkMagic(magic)
         if not pureHeart then continue
-        print("IP contain service " + libName + " " + libVersion + " found at ip: " + ip)
+        print("IP contain service " + wish + " found at ip: " + magicCircle)
         print("Tried " + it + " times. Spent " + str(time - start) + " seconds.")
         exit("Congrats.")
     end while

@@ -30,7 +30,7 @@ timeToDoMagic = function
         spell = castSpell
         pureHeart = checkMagic(spell)
         if not pureHeart then continue
-        print("IP contain kernel_router.so " + wish + " found at ip: " + magic)
+        print("IP contain kernel_router.so " + wish + " found at ip: " + spell)
         print("Tried " + it + " times. Spent " + str(time - start) + " seconds.")
         exit("Congrats.")
     end while
