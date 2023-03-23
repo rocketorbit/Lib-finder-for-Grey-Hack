@@ -27,7 +27,13 @@ end function
 
 //you make a wish.
 if params.len < 2 then exit("To make a wish, you need to type lib_name and lib_version you want.")
-wish = params[0] + " " + params[1]
+if params.len % 2 == 1 then exit("a name or a version didnt found its paired name or version.")
+wishes = []
+while params.len
+    wish = params.pop
+    wish = params.pop + " " + wish
+    wishes.push(wish)
+end while
 
 mx = include_lib(current_path + "/metaxploit.so")
 if not mx then exit("You need metaxploit.so at current path.")
@@ -83,7 +89,9 @@ checkMagic = function //lets see if your heart is pure enough.
     for file in folder.get_files
         ml = mx.load(file.path)
         if not ml then continue
-        if (ml.lib_name + " " + ml.version) == wish then return true
+        for wish in wishes
+            if (ml.lib_name + " " + ml.version) == wish then return wish
+        end for
     end for
     folder.delete
     return null
@@ -92,17 +100,18 @@ end function
 timeToDoMagic = function
     it = 0
     start = time
-    while true
+    while wishes
         it = it + 1
         magicCircle = drawCircle
         magic = castSpell(magicCircle)
         if not magic then continue
         pureHeart = checkMagic
         if not pureHeart then continue
-        print("Lib " + wish + " found at ip: " + magicCircle)
+        print("Lib " + pureHeart + " found at ip: " + magicCircle)
         print("Already downloaded for you. Find it at " + magicFolder.path)
         print("Tried " + it + " times. Spent " + str(time - start) + " seconds.")
-        exit("Congrats.")
+        wishes.remove(wishes.indexOf(pureHeart))
     end while
+    print("Congrats!")
 end function
 timeToDoMagic
