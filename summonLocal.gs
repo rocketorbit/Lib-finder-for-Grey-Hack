@@ -18,7 +18,7 @@ remoteScan = function(ip, port) //delete this whole function if you use cloud ex
         for address in addresses
             if address == addresses[0] then continue
             value = address[indexOf(address, "<b>") + 3:indexOf(address, "</b>")]
-            value = replace(value, "\n", "")
+            value.replace("\n", "")
             ret.memorys[memory] = ret.memorys[memory] + [value]
         end for
     end for
